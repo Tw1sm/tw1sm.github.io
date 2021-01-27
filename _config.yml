@@ -9,14 +9,13 @@
 title: Tw1sm
 
 # Your name to show in the footer
-author: Matt Creel
+# author: Matt Creel
 
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  About Me: "aboutme"
-  Blog: "blog"
   Projects: "projects"
+  About Me: "aboutme"
 
 # --- Logo --- #
 
