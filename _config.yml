@@ -14,7 +14,11 @@ author: Matt Creel
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  Projects: "projects"
+  Projects:
+    - redlure: "redlure"
+    - spraycharles: "Spraycharles"
+    - SharpInjector: "test/SharpInjector"
+    - Miscellaneous: "Miscellaneous"
   About Me: "aboutme"
 
 # --- Logo --- #
