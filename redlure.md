@@ -1,6 +1,6 @@
 ---
 layout: page
 title: redlure
-tags: [redlure, phishing]
+subtitle: Distributed Phishing Framework
 ---
 Placeholder page
