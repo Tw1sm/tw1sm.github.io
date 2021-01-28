@@ -16,9 +16,9 @@ author: Matt Creel
 navbar-links:
   GitHub Projects:
     - redlure: "redlure"
-    - spraycharles: "Spraycharles"
-    - SharpInjector: "test/SharpInjector"
-    - Miscellaneous: "Miscellaneous"
+    - spraycharles: "spraycharles"
+    - SharpInjector: "sharpinjector"
+    - Miscellaneous: "miscellaneous"
   About Me: "aboutme"
 
 # --- Logo --- #
