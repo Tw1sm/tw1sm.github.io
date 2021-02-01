@@ -15,10 +15,10 @@ author: Matt Creel
 
 navbar-links:
   GitHub Projects:
-    - redlure: "redlure"
+    - redlure: "projects/redlure"
     - spraycharles: "projects/spraycharles"
-    - SharpInjector: "sharpinjector"
-    - Miscellaneous: "miscellaneous"
+    - SharpInjector: "projects/sharpinjector"
+    - Miscellaneous: "projects/miscellaneous"
   About Me: "aboutme"
 
 # --- Logo --- #
