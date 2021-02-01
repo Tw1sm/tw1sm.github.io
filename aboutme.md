@@ -4,4 +4,4 @@ title: About me
 subtitle: 
 ---
 
-Professional penetration tester and Python enthusiast. 
+Penetration tester and Python enthusiast. 
