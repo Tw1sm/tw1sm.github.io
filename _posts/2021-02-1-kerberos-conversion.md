@@ -7,7 +7,7 @@ share-img: /assets/posts/kerberos-conversion/thumb.png
 tags: [kerberos, rubeus, impacket, .kirbi, .ccache]
 ---
 
-On recent pentests, I've been attempting to leverage unconstrained Kerberos delegation and stolen Kerberos tickets more. This is one of those privilege escalation methods that can fly under the radar - you might not need it to get the job done, but under the right conditions it might exactly what you're looking for. One of the things I found most confusing when starting with stolen TGTs (ticket-granting-tickets) was the different formats you can prepare the tickets in for usage with various offensive tools. This post will cover how you can use tickets snatched with Rubeus with different tools like Impacket, CrackMapExec, Mimikatz and Rubeus itself.
+On recent pentests, I've been attempting to leverage unconstrained Kerberos delegation and stolen Kerberos tickets more. This is one of those privilege escalation methods that can fly under the radar - you might not need it to get the job done, but under the right conditions it might provide exactly what you're looking for. One of the things I found most confusing when starting with stolen TGTs (ticket-granting-tickets) was the different formats you can prepare the tickets in for usage with various offensive tools. This post will cover how you can use tickets snatched with Rubeus with different tools like Impacket, CrackMapExec, Mimikatz and Rubeus itself.
 
 *Note: If you're looking for Kerberos delegation background or attack scenarios, [this](http://www.harmj0y.net/blog/redteaming/not-a-security-boundary-breaking-forest-trusts/) is probably the most helpful post I found
 

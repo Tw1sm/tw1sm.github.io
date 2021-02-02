@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: spraycharles
 subtitle: Interval based password spraying
 gh-repo: tw1sm/spraycharles
