@@ -130,4 +130,4 @@ Again, be careful to use DNS names since IP will fail:
 
 ![IP Fail](/assets/posts/kerberos-conversion/impacket/ip-fail.png){: .mx-auto.d-block :}
 
-:rocket::rocket::rocket:
+:rocket: :rocket: :rocket:
