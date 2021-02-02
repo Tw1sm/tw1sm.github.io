@@ -9,7 +9,7 @@ tags: [kerberos, rubeus, impacket, .kirbi, .ccache]
 
 On recent pentests, I've been attempting to leverage unconstrained Kerberos delegation and stolen Kerberos tickets more. This is one of those privilege escalation methods that can fly under the radar - you might not need it to get the job done, but under the right conditions it might provide exactly what you're looking for. One of the things I found most confusing when starting with stolen TGTs (ticket-granting-tickets) was the different formats you can prepare the tickets in for usage with various offensive tools. This post will cover how you can use tickets snatched with Rubeus with different tools like Impacket, CrackMapExec, Mimikatz and Rubeus itself.
 
-*Note: If you're looking for Kerberos delegation background or attack scenarios, [this](http://www.harmj0y.net/blog/redteaming/not-a-security-boundary-breaking-forest-trusts/) is probably the most helpful post I found*
+*Note: If you're looking for Kerberos delegation background or attack scenarios, [this](http://www.harmj0y.net/blog/redteaming/not-a-security-boundary-breaking-forest-trusts/) is probably the most helpful post I found.*
 
 # Stealing a Ticket
 First off, we need to obtain a ticket before we can play around with formatting. In the test lab, I've got a Windows 10 system configured for unconstrained Kerberos delegation:
@@ -22,7 +22,7 @@ Assuming that we've already compromised an account with local admin rights to th
 Rubeus.exe monitor /interval:1
 ~~~
 
-Now it may be sufficent to just wait and see what privileged or high-interest users/computers authenticate to our compromised host, or it may be possible to force a sensitive system to authenticate through the printerbug. In this case, I've just waited until a domain admin, `vizimir`, has logged in and pulled their TGT:
+It may be sufficent to just wait and see what privileged or high-interest users/computers authenticate to our compromised host, or it may be possible to force a sensitive system to authenticate through the printerbug. In this case, I've just waited until a domain admin, `vizimir`, has logged in and pulled their TGT:
 
 ![Vizimir TGT](/assets/posts/kerberos-conversion/capture-viz-tgt.png){: .mx-auto.d-block :}
 
@@ -88,14 +88,14 @@ To test if it worked, we'll start a new command prompt with `misc::cmd` and veri
 
 ![DC Access](/assets/posts/kerberos-conversion/mimikatz/access-dc.png){: .mx-auto.d-block :}
 
-W00t! While we're here in Mimikatz let's also test a dcsync attack:
+W00t! While we're here in Mimikatz, we should also be able to perform a dcsync attack now:
 
 ![DCSync](/assets/posts/kerberos-conversion/mimikatz/dcsync.png){: .mx-auto.d-block :}
 
 # Impacket and CrackMapExec (.ccache)
 This is by far my preferred method for using a stolen ticket, but it's also the one with the most formatting steps. We need to get the base64 ticket into a `.ccache` file. We can do this by converting from a `.kirbi` file, using Impacket's `ticketConverter.py`. 
 
-First, format the base64 ticket to remove line breaks, spaces, etc. and then decode it with the `base64` command:
+First, format the base64 ticket to remove line breaks, spaces, etc. and then decode it with the `base64` command, writing the output to a kirbi file:
 
 ```bash
 base64 -d <base64 ticket file> > <output .kirbi> 
@@ -126,8 +126,7 @@ Setup complete! Impacket and CrackMapExec have a `-k` flag specifying to use Ker
 
 ![Wmiexec](/assets/posts/kerberos-conversion/impacket/impacket-example.png){: .mx-auto.d-block :}
 
-Again, be careful to use DNS names since IP will fail:
+Again, be careful to use DNS names since using IP addresses will fail:
 
 ![IP Fail](/assets/posts/kerberos-conversion/impacket/ip-fail.png){: .mx-auto.d-block :}
 
-:rocket: :rocket: :rocket:
