@@ -22,11 +22,11 @@ Assuming that we've already compromised an account with local admin rights to th
 Rubeus.exe monitor /interval:1
 ~~~
 
-Now it may be sufficent to just wait and see what privileged or high-interest users/computers authenticate to our compromised host, or it may be possible to force a sensitive system to authenticate through the printerbug. In this case, I've just waiting until a domain admin, `vizimir`, has logged in and pulled their TGT:
+Now it may be sufficent to just wait and see what privileged or high-interest users/computers authenticate to our compromised host, or it may be possible to force a sensitive system to authenticate through the printerbug. In this case, I've just waited until a domain admin, `vizimir`, has logged in and pulled their TGT:
 
 ![Vizimir TGT](/assets/posts/kerberos-conversion/capture-viz-tgt.png){: .mx-auto.d-block :}
 
-Now that we've got a ticket, we can explore the various tools that can utilize them and the formats required.
+Now that we've got a ticket, we can explore the various tools that can utilize them and the various ticket formats.
 
 # Rubeus (base64 or .kirbi)
 We'll start with the easiest one. Rubeus can import a TGT to the current logon session from either a `base64` string or a `.kirbi` file. We'll stick with base64 since it's the most straightforward and also the format in which Rubeus initally presents the ticket to us.
@@ -59,7 +59,7 @@ And there we can see the ticket for `vizimir` successfully imported to our sessi
 
 This is a simple test of the new privileges, but we could also use tools like PsExec to remotely execute commands now.
 
-One thing to note with utilizing Kerberos authentication is that Kerberos relies on domain names and DNS entries. If we rerun the `dir` command and target and IP address, NTLM authentication will be used and we'll get access denied still:
+One thing to note with utilizing Kerberos authentication is that Kerberos relies on domain names and DNS entries. If we rerun the `dir` command and target a host by IP address, NTLM authentication will be used and we'll be back at access denied:
 
 ![IP Fail](/assets/posts/kerberos-conversion/rubeus/ip-fail.png){: .mx-auto.d-block :}
 
@@ -88,7 +88,7 @@ To test if it worked, we'll start a new command prompt with `misc::cmd` and veri
 
 ![DC Access](/assets/posts/kerberos-conversion/mimikatz/access-dc.png){: .mx-auto.d-block :}
 
-W00t! While we're here in Mimikatz let's just verify we can do a dcsync:
+W00t! While we're here in Mimikatz let's also test a dcsync attack:
 
 ![DCSync](/assets/posts/kerberos-conversion/mimikatz/dcsync.png){: .mx-auto.d-block :}
 
@@ -104,7 +104,7 @@ base64 -d <base64 ticket file> > <output .kirbi>
 ![Convert to Kirbi](/assets/posts/kerberos-conversion/impacket/convert-to-kirbi.png){: .mx-auto.d-block :}
 
 
-Convert to `.ccache` file using Impacket:
+Convert to `.ccache` using Impacket:
 
 ```bash
 python3 ticketConverter.py <input kirbi file> <output ccache file>
