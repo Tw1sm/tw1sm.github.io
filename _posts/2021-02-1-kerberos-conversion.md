@@ -88,7 +88,7 @@ To test if it worked, we'll start a new command prompt with `misc::cmd` and veri
 
 ![DC Access](/assets/posts/kerberos-conversion/mimikatz/access-dc.png){: .mx-auto.d-block :}
 
-W00t! While we're here in Mimikatz, we should also be able to perform a dcsync attack now:
+W00t! While we're here in Mimikatz, we should also be able to perform a dcsync attack:
 
 ![DCSync](/assets/posts/kerberos-conversion/mimikatz/dcsync.png){: .mx-auto.d-block :}
 
