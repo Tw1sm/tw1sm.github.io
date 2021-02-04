@@ -2,15 +2,16 @@
 layout: post
 title: SharpInjector
 subtitle: Experimenting with a shellcode runner
-thumbnail-img: /assets/posts/sharpinjector/thumb.png
-share-img: /assets/posts/sharpinjector/thumb.png
+thumbnail-img: /assets/projects/sharpinjector/thumb.png
+share-img: /assets/projects/sharpinjector/thumb.png
 tags: [c#, shellcode runner, sharpinjector]
 ---
-<img alt="C#" src="https://img.shields.io/badge/c%23%20-%23239120.svg?&style=for-the-badge&logo=c-sharp&logoColor=white"/><a href="https://github.com/tw1sm/SharpInjector"><img width=40px src="https://github.githubassets.com/images/modules/logos_page/Octocat.png" alt="octocat"></a>
 
 Since AV evasion has become more difficult over time, I've had to turn to more mature payloads and shellcode runners. Gone are the days of initial access through click-to-generate payloads like Cobalt Strike's HTA. Some of the more customized and advanced runners I've had sucess with are FireEye's [DueDlligence](https://github.com/fireeye/DueDLLigence), [D00Fist's](https://twitter.com/_D00mfist) [Go4aRun](https://github.com/D00MFist/Go4aRun) and [djhohnstein's](https://twitter.com/djhohnstein) [scatterbrain](https://github.com/djhohnstein/ScatterBrain). 
 
 The SharpInjector project is my inital attempt at writing a custom shellcode runner in the same vein as those projects (lots of inspiration drawn from them, as well as this [DEFCON workshop](https://github.com/mvelazc0/defcon27_csharp_workshop) for help learning parent process ID spoofing). Below is a quick run through of setup/usage, highlighting some of the customization options along the way.
+
+The code repository can be found [here](https://github.com/tw1sm/SharpInjector).
 
 # Prepping the Shellcode
 The final SharpInjector payload will contain encrypted shellcode, decrypt it and perform the injection. So we'll need to get some encrypted shellcode into the solution to start.
