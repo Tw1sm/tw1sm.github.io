@@ -41,9 +41,9 @@ Your shellcode will be encrypted, then base64 encoded and the resulting string w
 ```csharp
 namespace SharpInjector
 {
-	class EncryptedShellcode
+    class EncryptedShellcode
     {
-		public string EncSc = "Od/HuzTqISDnPNtgmoUZ2c8" //SNIPPED
+        public string EncSc = "Od/HuzTqISDnPNtgmoUZ2c8" //SNIPPED
     }
 }
 ```
@@ -52,9 +52,9 @@ You can choose to leave the encrypted shellcode within this file and contiune cu
 ```csharp
 namespace SharpInjector
 {
-	class EncryptedShellcode
+    class EncryptedShellcode
     {
-		public string EncSc = "" //Has to be blank for download to run
+        public string EncSc = "" //Has to be blank for download to run
     }
 }
 ```
