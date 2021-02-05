@@ -7,7 +7,7 @@ share-img: /assets/projects/sharpinjector/thumb.png
 tags: [c#, shellcode runner, sharpinjector]
 ---
 
-Since AV evasion has become more difficult over time, I've had to turn to more mature payloads and shellcode runners. Gone are the days of initial access through click-to-generate payloads like Cobalt Strike's HTA. Some of the more customized and advanced runners I've had success with are FireEye's [DueDlligence](https://github.com/fireeye/DueDLLigence), [D00mFist's](https://twitter.com/_D00mfist) [Go4aRun](https://github.com/D00MFist/Go4aRun) and [djhohnstein's](https://twitter.com/djhohnstein) [scatterbrain](https://github.com/djhohnstein/ScatterBrain). 
+Since AV evasion has become more difficult over time, I've had to turn to more mature payloads and shellcode runners. Gone are the days of initial access through click-to-generate payloads like Cobalt Strike's HTA. Some of the more customized and advanced runners I've had success with are FireEye's [DueDlligence](https://github.com/fireeye/DueDLLigence), [D00mFist's](https://twitter.com/_D00mfist) [Go4aRun](https://github.com/D00MFist/Go4aRun) and [djhohnstein's](https://twitter.com/djhohnstein) [ScatterBrain](https://github.com/djhohnstein/ScatterBrain). 
 
 The SharpInjector project is my inital attempt at writing a custom shellcode runner in the same vein as those projects (lots of inspiration drawn from them, as well as this [DEFCON workshop](https://github.com/mvelazc0/defcon27_csharp_workshop) for help learning parent process ID spoofing). Below is a quick run through of setup/usage, highlighting some of the customization options along the way.
 
@@ -77,7 +77,7 @@ Still within `Program.cs`, on line 22 set your preferred Windows API call used t
 const ExecutionMethod exeMethod = ExecutionMethod.RtlCreateUserThread; // CHANGE THIS; shellcode exectuon method
 ```
 
-On lines 24 and 25, set the parent process ID spoofing configs. Line 24 sets the parent process that a child will be spawned from. `explorer.exe` is a good target for this. On line 25, the `ProgramPath` variable specifies the child process to launch - this is the process your beacon/shell will live in.
+On lines 24 and 25, set the parent process ID spoofing configs. Line 24 sets the parent process that a child will be spawned from. `explorer.exe` is a good target for this. On line 25, the `ProgramPath` variable specifies the child process to launch - this is the process your beacon/shell will live in. *Note: PPID spoofing will only be performed if the chosen API call is capable of remote process injection.*
 ```csharp
 string ParentName = "explorer"; // CHANGE THIS: name of parent process
 string ProgramPath = @"C:\Program Files\Internet Explorer\iexplore.exe"; // CHANGE THIS: path to process shellcode will be injected into
