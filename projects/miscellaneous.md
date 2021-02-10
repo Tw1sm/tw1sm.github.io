@@ -1,17 +1,17 @@
 ---
 layout: page
 title: Other Projects
-subtitle: Miscellaneous tools someone may find useful
+subtitle: Miscellaneous tools I hope someone finds useful
 ---
 
 This page contains details about smaller tools with random functionaltiy I've created, likely to ease manual or tedious processes.
 
 # Namedaddy <a href="https://github.com/Tw1sm/namedaddy"><img width=40 src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"/></a>
 
- Namedaddy is a tool to quickly manage DNS records via domain registrar API clients. It currently supports the Namecheap and GoDaddy APIs, although it's built in an extensible manner. This tool is great for quickly updating A records or initally configuring DNS the first time you use a domain (MX, DKIM, DMARC, SPF), even offering customizable presets for infrastructure you use often.
+Namedaddy is a tool to quickly manage DNS records via domain registrar API clients. It currently supports the Namecheap and GoDaddy APIs, although it's built in an extensible manner. This tool is great for quickly updating A records or initally configuring DNS the first time you use a domain (MX, DKIM, DMARC, SPF), even offering customizable presets for infrastructure you use often.
 
- DNS record commands:
- ```
+DNS record commands:
+```
 Command     Syntax <Required> (Optional)            About
 =======     ============================            =====
 add         <type> (priority> <name> <value>        Add a DNS record. Priority is only for MX
@@ -23,8 +23,10 @@ help                                                Displays help menu
 records                                             Display DNS records
 stockconfig <config name>                           Configure a new domain with preset records
 updateip    <ip addr>                               Updates the IP the address domain points to
- ```
+```
 
+# HTTPS-MalleableC2-Config <a href="https://github.com/Tw1sm/HTTPS-MalleableC2-Config"><img width=40 src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"/></a>
+For many pentests, our Cobalt Strike Malleable C2 profile details are less important than simply just having a profile and SSL setup. Setting C2 profiles up manually is time consuming, while automated tools to do it for you often fail (in my experience) or limit you to one preconfigured profile. This script lets you quickly pick a preconfigured profile (from [rsmudge's git repo](https://github.com/rsmudge/Malleable-C2-Profiles)) for use with your C2 domain and provides you with a Java Keystore and C2 profile ready to initalize your teamserver with.
 
 # LinkedInRecon <a href="https://github.com/Tw1sm/LinkedInRecon"><img width=40 src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"/></a>
 
