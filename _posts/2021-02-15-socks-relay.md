@@ -1,7 +1,7 @@
 ---
 layout: post
 title: SOCKS Proxy Relaying
-subtitle: Transitiong to multi-relay attacks with ntlmrelayx
+subtitle: Transitioning to multi-relay attacks with ntlmrelayx
 thumbnail-img: /assets/posts/socks-relay/thumb.png
 share-img: /assets/posts/socks-relay/thumb.png
 tags: [ntlmrelayx, responder, relay]
@@ -83,7 +83,7 @@ CME is usually my tool of choice so lets cover it first. Two things to note when
 Knowing this, lets test CME:
 ![CME Auth](/assets/posts/socks-relay/proxyauth-cme.png){: .mx-auto.d-block :}
 
-We have limited functionality with CME - `smbexec` may work, but `wmiexec` and `atexec` will fail since more than port 445 is used. But we could still obtain local account hashes with `--sam` and registry secrets with `--lsa` (we could also use `secretsdump.py` directly). We already established that the local account hashes won't help us much here, so lets check for LSA secrets:
+We have limited functionality with CME; `smbexec` may work, but `wmiexec` and `atexec` will fail since more than port 445 is used. But, we could still obtain local account hashes with `--sam` and registry secrets with `--lsa` (we could also use `secretsdump.py` directly). We already established that the local account hashes won't help us much here, so lets check for LSA secrets:
 ![LSA](/assets/posts/socks-relay/proxyauth-lsa.png){: .mx-auto.d-block :}
 
 ### smbclient
@@ -102,7 +102,7 @@ Wrong, for reasons unknown to me, `smbmap` can read the C drive in my setup, but
 Similar to the oddities with `smbclient`, I've had issues with `smbexec.py` not working in every environment. But we *should* be able to obtain and interactive session using it. We can specify `-no-pass` here since the password we supply when prompted won't matter:
 ![smbexec](/assets/posts/socks-relay/proxyauth-smbexec.png){: .mx-auto.d-block :}
 
-Seems to be working well here. We should also be able to use `smbexec` through CME with `--exec method smbexec` if you don't desire an interactive shell.
+Seems to be working well here. We should also be able to use `smbexec` through CME with `--exec-method smbexec` if you don't desire an interactive shell.
 
 ### What if smbexec fails?
 Say `smbexec` did fail on us, is all hope of getting remote command execution lost? Nope, remember when we dumped LSA secrets with CME? We've got the machine account NTLM hash so we can make ourselves a silver ticket and get access that way - actually breaking out of the port 445 restriction currently imposed on us by the SOCKS proxy (no need for proxychains if we go this route).
