@@ -58,7 +58,7 @@ This is likely the `radovid` account we saw dumped. This hash is less helpful fo
 We can successfully authenticate, but we're missing the yellow `(Pwn3d!)` CrackMap uses to denote admin rights. This is because non-RID 500 local accounts have their admin rights "filtered" away when logging in using methods like SMB. The registry key that controls this is `LocalAccountTokenFilterPolicy` found at `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System`. The value is set to `0` on our target, meaning token filtering will take place: 
 ![LocalAccountTokenFilterPolicy](/assets/posts/socks-relay/filterpolicy.png){: .mx-auto.d-block :}
 
-I do occasionally see machines with this set to `1` meaning PTH still yeilds admin access, but since it's not, we're a little stuck without cracking the hash and claiming the cleartext password. This is a prime situation to use the SOCKS feature of `ntlmrelayx`.
+I do occasionally see machines with this set to `1` meaning PTH still yields admin access, but since it's not, we're a little stuck without cracking the hash and claiming the cleartext password. This is a prime situation to use the SOCKS feature of `ntlmrelayx`.
 
 # SOCKS Relay
 We'll restart the relay with the `-socks` flag:
