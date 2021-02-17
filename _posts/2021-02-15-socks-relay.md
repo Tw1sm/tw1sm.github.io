@@ -90,7 +90,7 @@ We have limited functionality with CME; `smbexec` may work, but `wmiexec` and `a
 In some environments I've gotten `smbclient` to work with the SOCKS proxy auth, however, here in my lab it's decided not to:
 ![smbclient](/assets/posts/socks-relay/proxyauth-smbclient.png){: .mx-auto.d-block :}
 
-If it does work, we could PUT/GET files from the C drive. Useful for potentially uploading procdump or download sensitive files.
+If it does work, we could PUT/GET files from the C drive. Useful for potentially uploading procdump or downloading sensitive files.
 
 ### smbmap
 Well, if `smbclient` didn't work, `smbmap` won't either... right?
