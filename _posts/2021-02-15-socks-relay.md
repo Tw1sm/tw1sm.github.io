@@ -96,7 +96,7 @@ If it does work, we could PUT/GET files from the C drive. Useful for potentially
 Well, if `smbclient` didn't work, `smbmap` won't either... right?
 ![smbmap](/assets/posts/socks-relay/proxyauth-smbmap.png){: .mx-auto.d-block :}
 
-Wrong, for reasons unknown to me, `smbmap` can read the C drive in my setup, but `smbclient` can't. Maybe I was using smbclient wrong, but like I said, I've had it work before. At any rate, we could `smbmap` to accomplish the same functionality we desired with `smbclient`.
+Wrong, for reasons unknown to me, `smbmap` can read the C drive in my setup, but `smbclient` can't. Maybe I was using smbclient wrong, but like I said, I've had it work before. At any rate, we could use `smbmap` to accomplish the same functionality we desired with `smbclient`.
 
 ### smbexec
 Similar to the oddities with `smbclient`, I've had issues with `smbexec.py` not working in every environment. But we *should* be able to obtain and interactive session using it. We can specify `-no-pass` here since the password we supply when prompted won't matter:
