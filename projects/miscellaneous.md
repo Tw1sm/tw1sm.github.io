@@ -6,6 +6,9 @@ subtitle: Miscellaneous tools I hope someone finds useful
 
 This page contains details about smaller tools with random functionaltiy I've created, likely to ease manual or tedious processes.
 
+# aesKrbKeyGeb <a href="https://github.com/Tw1sm/aesKrbKeyGen"><img width=40 src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"/></a>
+aesKrbKeyGen is a Python3 script to calculate Kerberos keys for Active Directory accounts using a cleartext password. This is a port of Kevin Robertson's PowerShell script, [Get-KerberosAESKey.ps1](https://gist.github.com/Kevin-Robertson/9e0f8bfdbf4c1e694e6ff4197f0a4372).
+
 # Namedaddy <a href="https://github.com/Tw1sm/namedaddy"><img width=40 src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"/></a>
 
 Namedaddy is a tool to quickly manage DNS records via domain registrar API clients. It currently supports the Namecheap and GoDaddy APIs, although it's built in an extensible manner. This tool is great for quickly updating A records or initally configuring DNS the first time you use a domain (MX, DKIM, DMARC, SPF), even offering customizable presets for infrastructure you use often.
