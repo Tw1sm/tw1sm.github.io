@@ -6,7 +6,7 @@ subtitle: Miscellaneous tools I hope someone finds useful
 
 This page contains details about smaller tools with random functionaltiy I've created, likely to ease manual or tedious processes.
 
-# aesKrbKeyGeb <a href="https://github.com/Tw1sm/aesKrbKeyGen"><img width=40 src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"/></a>
+# aesKrbKeyGen <a href="https://github.com/Tw1sm/aesKrbKeyGen"><img width=40 src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"/></a>
 aesKrbKeyGen is a Python3 script to calculate Kerberos keys for Active Directory accounts using a cleartext password. This is a port of Kevin Robertson's PowerShell script, [Get-KerberosAESKey.ps1](https://gist.github.com/Kevin-Robertson/9e0f8bfdbf4c1e694e6ff4197f0a4372).
 
 # Namedaddy <a href="https://github.com/Tw1sm/namedaddy"><img width=40 src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"/></a>
