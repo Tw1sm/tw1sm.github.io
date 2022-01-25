@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Experimenting with Kerberos
+title: Experimenting with Kerberos Ticket Formats
 subtitle: Extracting Kerberos tickets with Rubeus and utilizing them in various formats
 thumbnail-img: /assets/posts/kerberos-conversion/thumb.png
 share-img: /assets/posts/kerberos-conversion/thumb.png
