@@ -11,7 +11,7 @@ aesKrbKeyGen is a Python3 script to calculate Kerberos keys for Active Directory
 
 # Namedaddy <a href="https://github.com/Tw1sm/namedaddy"><img width=40 src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"/></a>
 
-Namedaddy is a tool to quickly manage DNS records via domain registrar API clients. It currently supports the Namecheap and GoDaddy APIs, although it's built in an extensible manner. This tool is great for quickly updating A records or initally configuring DNS the first time you use a domain (MX, DKIM, DMARC, SPF), even offering customizable presets for infrastructure you use often.
+Namedaddy is a tool to quickly manage DNS records via domain registrar API clients. It currently supports the Namecheap, Route53 and GoDaddy APIs, although it's built in an extensible manner. This tool is great for quickly updating A records or initally configuring DNS the first time you use a domain (MX, DKIM, DMARC, SPF), even offering customizable presets for infrastructure you use often.
 
 DNS record commands:
 ```
