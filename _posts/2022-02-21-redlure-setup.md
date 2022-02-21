@@ -11,43 +11,43 @@ Back in 2019 and 2020 I spent a large chunk of time developing a phishing platfo
 
 ![](../assets/posts/redlure-setup/meme_1.jpeg){: .mx-auto.d-block :}
 
-# The "Why" Behind redlure
+## The "Why" Behind redlure
 There are a few operational deficiencies my team identified in our phishing processes that drove the development of something new. None of these are to suggest that redlure is the ideal solution to the problems presented, or the right solution for every team, but to simply provide a baseline of the development goals.
 
-## Scalability
+### Scalability
 Working for a consulting firm on a small offensive security team of 5+ people, there are going to be multiple client projects running in parallel. This inevitably means overlapping phishing engagements, but with many tools, you're either limited to phishing from one domain at a time, or maybe even unable to run different campaigns simultaneously. 
 
 To address this, my team used to maintain 3 or 4 individual instances of our phishing platforms to support multiple engagements or even provide flexibility within a single engagement. This usually meant we had to make repetitive updates to various phishing templates across servers or manually aggregate phishing results from separate servers used during a single engagement.
 
-## Focus on Offensive Phishing
+### Focus on Offensive Phishing
 Putting user awareness aside, there's usually two goals when phishing in the context of a pentest: harvesting credentials or delivering a C2 payload. 
 
-For credential harvesting, we always desired a simple way to mimic the flow of signing into services like Office365 or Gmail, which utilize separate pages for username and password entry. This login experience that users are familiar with can be difficult to recreate within a phishing framework and is something we frequently setup in hacky ways fully or partially outside our phishing tools. 
+For credential harvesting, we always desired a simple way to mimic the flow of signing into services like Office365 or Gmail, which utilize separate pages for username and password entry. This login experience that users are familiar with can be difficult to recreate within a phishing framework and is something we frequently setup in hacky ways fully or partially outside our phishing frameworks. 
 
 On the payload delivery side, we desired a way to incorporate the payload directly into campaigns from our phishing tool, without the need to manually copy it up to exposed directories on phishing servers or needlessly expose our C2 domain by hosting it off Cobalt Strike's web server. 
 
-## Manual Configuration
+### Manual Configuration
 Phishing is generally time consuming no matter how you slice it, but we found ourselves spending extra time SSHing out to phishing servers to do small manual things like switch domains we're phishing from or generate SSL certs. This was definitely more of a convenience wish than an operational need, but something we thought would be a time saver if it could done from a central location.
 
-# How redlure Attempts to Improve These
-## Scalability
-redlure attempts to solve this with what I would describe as a distributed or 'hub and spoke' architecture. There's a central API, the redlure-console, which acts as the command center of the framework. The console is the singular point of storage for templates, results and all your phishing-related data. A web UI, the redlure-client, allows you to interact with the console API from a browser. While you're ideally only interacting with the console outside of initial setup, the console doesn't host any of your templated phishing sites on the web - that is the function of the redlure-worker.
+## How redlure Attempts to Improve These
+### Scalability
+redlure attempts to solve this with what I would describe as a distributed or 'hub and spoke' architecture. There's a central API, the redlure-console, which acts as the command center of the framework. The console is the singular point of storage for templates, results and all your phishing-related data. A web UI, the redlure-client, allows you to interact with the console API from a browser. While you're ideally only interacting with the console/web UI outside of initial setup, the console doesn't host any of your templated phishing sites on the web - that is the function of the redlure-worker.
 
 Workers get setup on remote servers and host a simpler API that communicates with the console. You can setup and connect a variable number of workers to a single console; sometimes I have only a single worker hooked up to my console, other times my team has had 6 or 7 at once. This allows operators to scale up and down as needed, with the added benefit that if an IP or domain gets burned, you can just destroy the offending worker and replace it with a new one instead of having to stand-up all new phishing infrastructure.
 
-## Focus on Offensive Phishing
-When setting up a phishing campaign through the console, you have the ability to chain up to four of your templated webpages together through actions like form submission or button clicks. This allows you the ability to accurately mimic two-step logins or hide your true landing page behind a sort of rudimentary redirect. Four You can read a little more about the setup for these [here](https://docs.redlure.io/redlure-console/pages.html).
+### Focus on Offensive Phishing
+When setting up a phishing campaign through the console, you have the ability to chain up to four of your templated webpages together through actions like form submission or button clicks. This allows you the ability to accurately mimic two-step logins or hide your true landing page behind a sort of rudimentary redirect. Four pages may be overkill - I've never gone this far myself, but the flexbility is there if you decide to get creative. You can read a little more about the setup for these [here](https://docs.redlure.io/redlure-console/pages.html).
 
 On the payload side, payloads can be uploaded directly to workers through the client interface. In campaign configuration options you have the ability to select a payload uploaded to your chosen worker and host it off a configurable URI which is accessible through a variable in your templated emails and webpages.
 
-## Manual Configuration
+### Manual Configuration
 Ideally, after setup, the client will serve as your single point of interaction with the console and workers. Through the web interface and console API you can remotely generate Let's Encrypt SSL certificates on workers for your domains. Domain usage gets configured at runtime for campaigns, so there is no need to SSH out to workers for either of these. The only thing you should have to handle outside of the client interface is configuring your DNS records. 
 
-# Setup Guide
-## Console Setup
-I'll setup the console and client off one server. This needs 2GB memory minimum; anything less and I've had issues. The one I'm deploying has 2GB or RAM and 64 GB disk space - $12/month. Firewall rules I typically use can be found [here](https://docs.redlure.io/redlure-console/firewall.html).
+## Setup Guide
+### Console Setup
+I'll setup the console and client off one server. This needs 2GB memory minimum; anything less and I've had issues. The one I'm deploying has 2GB of RAM and 64 GB disk space - $12/month on Vultr. Firewall rules I typically use can be found [here](https://docs.redlure.io/redlure-console/firewall.html).
 
-First thing to do is update, then install certbot for some SSL certificates.
+First thing to do is update, then install certbot for SSL certificates.
 
 ![](../assets/posts/redlure-setup/2_certbot_install.png){: .mx-auto.d-block :}
 
@@ -73,7 +73,7 @@ Now we can start the console for real (screen/tmux time). The first time you sta
 
 ![](../assets/posts/redlure-setup/8_start_console.png){: .mx-auto.d-block :}
 
-## Client Setup
+### Client Setup
 On the same cloud instance as the console, I'll [install](https://docs.redlure.io/redlure-client/Installation.html) the client.
 
 Clone the repo and install `npm`.
@@ -108,7 +108,7 @@ At this point, your console is fully functional and you can start adding workspa
 
 When designing the web interface and main campaign components, I took a lot of inspiration from [Gophish](https://github.com/gophish/gophish), authored by [Jordan Wright](https://twitter.com/jw_sec). If you've made it this far into the post, I'd assume you do a fair amount of phishing and thus have probably tried Gophish. Gophish is a tool I enjoyed success with in the past and one I think does a lot of things right. In particular, I love how the phishing campaigns feel very modular and easy to switch a single piece in or out of - something I tired to mimic.
 
-## Connecting Workers to the Console
+### Connecting Workers to the Console
 Last thing you'll need before phishing is to [install](https://docs.redlure.io/redlure-worker/Installation.html) one or more workers to host campaigns for you. I'll only be adding one for the purpose of this post, but you can repeat this process to add as many workers as you need.
 
 I usually deploy these on cheap cloud instances with around 1 GB RAM and 32 GB storage. On Vultr these are $6/month, per worker you stand up.
@@ -117,7 +117,7 @@ After deploying a new server for the worker, clone the repo and run the `install
 
 ![](../assets/posts/redlure-setup/15_worker_install.png){: .mx-auto.d-block :}
 
-This should end with creation of your pipenv environment. If the script fails somewhere along the way, or you don't have Python3.9 available, you can create the virtualenv yourself with `pipenv install` or `pipenv install --python 3.X`
+This should end with creation of your pipenv environment. If the script fails somewhere along the way, or you don't have Python3.9 available, you can create the virtual environment yourself with `pipenv install` or `pipenv install --python 3.X`.
 ![](../assets/posts/redlure-setup/16_worker_install_2.png){: .mx-auto.d-block :}
 
 Before editing `config.py` go back to the web console and copy your API key from the *Domains & Servers* page. This will used by both the console and workers to verify traffic coming from the other. You can regenerate your key in the web interface at any time, but doing so will break worker/console communications until you update your workers' configs with the new key.
@@ -142,5 +142,5 @@ As far as worker setup, everything is complete! While we're on the *Domains & Se
 
 If this succeeds, you'll get the message on the green notification bar and also see Certs column flip from *Unset* to *Set*. This will also update the certificate paths in the domain's config with the default Let's Encrypt locations.
 
-# Conclusion
+## Conclusion
 This post got extremely long, without even going into any features post-setup. For the moment, the [DEFCON content](https://youtu.be/ZtCMnKHZJUM) contains examples of setting up campaigns with multi-page web content and integrated payload hosting (jump to [18:23](https://youtu.be/ZtCMnKHZJUM?t=1103) in the video), but I may add a blog or two in the future to demonstrate these. Overall, my hope is that is post will aid anyone interested in deploying redlure for their own engagements, especially anyone that may have been hesitant previously due to a lack of resources/guides like this.

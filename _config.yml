@@ -18,7 +18,7 @@ navbar-links:
     - SharpInjector: "2021-02-04-sharpinjector/"
     - Miscellaneous: "projects/miscellaneous"
   redlure:
-    - Setup Guide: "2022-02-21-redlure-setup/"
+    - Introduction: "2022-02-21-redlure-setup/"
   About Me: "aboutme"
 
 # --- Logo --- #
