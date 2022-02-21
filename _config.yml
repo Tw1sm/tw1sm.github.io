@@ -17,8 +17,8 @@ navbar-links:
   GitHub Projects:
     - SharpInjector: "2021-02-04-sharpinjector/"
     - Miscellaneous: "projects/miscellaneous"
-  redlure:
-    - Introduction: "2022-02-21-redlure-setup/"
+  redlure Resources:
+    - Setup Guide: "2022-02-21-redlure-setup/"
   About Me: "aboutme"
 
 # --- Logo --- #
