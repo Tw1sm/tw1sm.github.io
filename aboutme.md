@@ -4,7 +4,7 @@ title: About me
 subtitle:
 ---
 
-I'm a senior offensive secuity engineer with most of my experience in penetration testing. I enjoy writing buggy Python tools and learning about Active Directory. 
+I'm a senior offensive security engineer with most of my experience in penetration testing. I enjoy writing buggy Python tools and learning about Active Directory. 
 
 I hold the OSCP and [CRTO](https://eu.badgr.com/public/assertions/VnFfDX96TlG8vAspRQVjbA) certifications.
 
